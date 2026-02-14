@@ -7,10 +7,10 @@ import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
-  { name: "Artisanship", href: "/#artisanship" },
-  { name: "Portfolio", href: "/#portfolio" },
+  { name: "About", href: "/#about" },
+  { name: "Services", href: "/services" },
+  { name: "Work", href: "/#portfolio" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Process", href: "/#process" },
 ];
 
 export default function Navbar() {

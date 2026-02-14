@@ -24,7 +24,19 @@ const previewItems = [
   },
 ];
 
-export default function GalleryPreview() {
+interface GalleryItem {
+  id: string | number;
+  title: string;
+  src: string;
+}
+
+interface GalleryPreviewProps {
+  items?: GalleryItem[];
+}
+
+export default function GalleryPreview({ items }: GalleryPreviewProps) {
+  const displayItems = items && items.length > 0 ? items : previewItems;
+
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -63,7 +75,7 @@ export default function GalleryPreview() {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
-            {previewItems.map((item, index) => (
+            {displayItems.map((item, index) => (
                 <Link href="/gallery" key={item.id} className="group relative aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer block">
                     <Image
                         src={item.src}

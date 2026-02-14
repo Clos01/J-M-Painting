@@ -10,7 +10,7 @@ const portfolioItems = [
     id: 1,
     title: "Raleigh Estate",
     category: "Full Interior",
-    src: "https://images.unsplash.com/photo-1628592102171-44754c0e6e73?auto=format&fit=crop&q=80&w=1200",
+    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
   },
   {
     id: 2,
@@ -32,7 +32,20 @@ const portfolioItems = [
   },
 ];
 
-export default function PortfolioMasonry() {
+interface PortfolioItem {
+  id: string | number;
+  title: string;
+  category: string;
+  src: string;
+}
+
+interface PortfolioMasonryProps {
+  items?: PortfolioItem[];
+}
+
+export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
+  const displayItems = items && items.length > 0 ? items : portfolioItems;
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -71,8 +84,8 @@ export default function PortfolioMasonry() {
 
       {/* Full Screen Sticky Items */}
       <div className="relative">
-        {portfolioItems.map((item, index) => (
-          <PortfolioItem key={item.id} item={item} index={index} total={portfolioItems.length} />
+        {displayItems.map((item, index) => (
+          <PortfolioItem key={`${item.id}-${index}`} item={item} index={index} total={displayItems.length} />
         ))}
       </div>
     </section>

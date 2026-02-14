@@ -4,10 +4,23 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function Hero() {
+export default function Hero({ 
+  title = "Timeless Interiors, Elevated.", 
+  subtitle = "The Artisan Standard — Since 1998",
+  buttonText = "Check Availability",
+  backgroundImage
+}: { 
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  backgroundImage?: string;
+}) {
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
+
+  // Default fallback image if none provided in Sanity
+  const bgImage = backgroundImage || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=2000";
 
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
@@ -28,7 +41,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[140vh] w-full bg-bespoke-gradient overflow-hidden pt-32 pb-24"
+      className="relative min-h-screen md:min-h-[140vh] w-full bg-bespoke-gradient overflow-hidden pt-32 pb-24"
       aria-label="Welcome section with luxury architectural composition"
     >
       <div className="max-w-[1800px] mx-auto grid grid-cols-12 gap-6 px-6 md:px-12 relative z-20">
@@ -42,7 +55,7 @@ export default function Hero() {
             className="mb-8"
           >
              <span className="text-brand-blue font-sans text-xs uppercase tracking-[0.5em] font-black mb-4 block">
-              The Artisan Standard — Since 1998
+              {subtitle}
             </span>
           </motion.div>
 
@@ -56,11 +69,7 @@ export default function Hero() {
               transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-[clamp(3rem,8vw,7rem)] font-serif text-charcoal leading-[0.85] tracking-tight mb-8"
             >
-              Timeless <br />
-              <span className="italic block ml-[0.15em] text-navy">Interiors,</span>
-              <span className="font-sans font-black text-[clamp(2.5rem,6vw,5rem)] tracking-tighter text-vibrant uppercase -mt-2 block">
-                Elevated.
-              </span>
+              <div dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br/>') }} />
             </motion.h1>
 
             <motion.div
@@ -76,7 +85,7 @@ export default function Hero() {
               <div className="flex flex-wrap gap-6 items-center">
                 <button className="group relative bg-navy text-alabaster px-8 py-4 overflow-hidden rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl">
                   <div className="absolute inset-0 bg-brand-blue translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                  <span className="relative z-10 font-bold uppercase tracking-widest text-xs md:text-sm">Check Availability</span>
+                  <span className="relative z-10 font-bold uppercase tracking-widest text-xs md:text-sm">{buttonText}</span>
                 </button>
                 <div className="w-12 h-[1px] bg-brand-blue/30 hidden md:block" />
                 <button className="text-navy font-black uppercase tracking-widest text-xs hover:text-brand-blue transition-colors">
@@ -94,7 +103,7 @@ export default function Hero() {
             className="relative aspect-[3/4] lg:aspect-auto lg:h-[80vh] w-full rounded-[40px] md:rounded-[100px] overflow-hidden shadow-2xl lg:mt-0 lg:ml-12"
           >
             <Image
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=2000"
+              src={bgImage}
               alt="Luxury interior composition"
               fill
               className="object-cover"
