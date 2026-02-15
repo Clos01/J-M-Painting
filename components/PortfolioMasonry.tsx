@@ -11,24 +11,28 @@ const portfolioItems = [
     title: "Raleigh Estate",
     category: "Full Interior",
     src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
+    alt: "Raleigh Estate full interior painting project"
   },
   {
     id: 2,
     title: "Durham Modern",
     category: "Kitchen Renovation",
     src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+    alt: "Durham Modern kitchen renovation"
   },
   {
     id: 3,
     title: "Chapel Hill Villa",
     category: "Exterior Finish",
     src: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=1200",
+    alt: "Chapel Hill Villa exterior finish"
   },
   {
     id: 4,
     title: "Cary Residence",
     category: "Cabinet Refinishing",
     src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200",
+    alt: "Cary Residence cabinet refinishing"
   },
 ];
 
@@ -37,6 +41,7 @@ interface PortfolioItem {
   title: string;
   category: string;
   src: string;
+  alt?: string;
 }
 
 interface PortfolioMasonryProps {
@@ -93,47 +98,75 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
 }
 
 function PortfolioItem({ item, index, total }: { item: any, index: number, total: number }) {
-  // We can add specific scroll transforms here if needed, but sticky does the heavy lifting
+  const ref = useRef<HTMLDivElement>(null);
   
-  return (
-    <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        <Link href="/gallery" className="relative w-full h-full flex items-center justify-center group">
-            {/* Background Image */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority={index === 0}
-                    quality={90}
-                />
-                {/* Dark Overlay for Text Legibility */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-500" />
-            </div>
+  // Track scroll progress of this specific item
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"], // Track while sticky
+  });
 
-            {/* Content Overlay */}
-            <div className="relative z-10 text-center text-white p-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: false }}
-                >
-                    <div className="mb-6 overflow-hidden">
-                        <span className="inline-block py-1 px-3 border border-white/30 rounded-full bg-white/10 backdrop-blur-md text-xs uppercase tracking-[0.2em] font-medium">
-                            {item.category}
-                        </span>
-                    </div>
-                    <h3 className="text-5xl md:text-8xl font-serif mb-4 tracking-tight drop-shadow-2xl">
-                        {item.title}
-                    </h3>
-                    <div className="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                        <span className="text-white text-xs uppercase tracking-[0.2em] border-b border-white pb-1">View Project</span>
-                    </div>
-                </motion.div>
-            </div>
-        </Link>
+  // Apple-style Transforms
+  // 1. Scale down slightly (depth effect)
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.90]);
+  
+  // 2. Dim effect (Darken instead of fade out)
+  // We map the scroll to the opacity of a BLACK overlay
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.6]);
+
+  return (
+    <div ref={ref} className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        <motion.div 
+            style={{ scale }}
+            className="relative w-full h-full flex items-center justify-center group shadow-[0_-50px_100px_-20px_rgba(0,0,0,0.5)] z-0"
+        >
+            <Link href="/gallery" className="relative w-full h-full block">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src={item.src}
+                        alt={item.alt || item.title}
+                        fill
+                        className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                        priority={index <= 1} // Preload the first *two* images
+                        quality={80} // Reduce quality for speed (indistinguishable visually)
+                        sizes="100vw" // Tells browser it's full width, so it downloads correct size
+                        loading={index <= 1 ? "eager" : "lazy"}
+                    />
+                    
+                    {/* Hover Overlay (Original) */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500 z-10" />
+
+                    {/* Parallax Dimming Overlay (New) */}
+                    <motion.div 
+                        style={{ opacity: overlayOpacity }}
+                        className="absolute inset-0 bg-black z-20 pointer-events-none"
+                    />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="relative z-30 h-full flex flex-col items-center justify-center text-center text-white p-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: false }}
+                    >
+                        <div className="mb-6 overflow-hidden">
+                            <span className="inline-block py-1 px-3 border border-white/30 rounded-full bg-white/10 backdrop-blur-md text-xs uppercase tracking-[0.2em] font-medium shadow-lg">
+                                {item.category}
+                            </span>
+                        </div>
+                        <h3 className="text-5xl md:text-8xl font-serif mb-4 tracking-tight drop-shadow-2xl">
+                            {item.title}
+                        </h3>
+                        <div className="mt-8 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                            <span className="text-white text-xs uppercase tracking-[0.2em] border-b border-white pb-1">View Project</span>
+                        </div>
+                    </motion.div>
+                </div>
+            </Link>
+        </motion.div>
     </div>
   );
 }
