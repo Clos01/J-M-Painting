@@ -46,12 +46,12 @@ export default function Services({
             whileInView={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-serif text-navy leading-none tracking-tighter mb-8"
           >
-             <div dangerouslySetInnerHTML={{ __html: heading.replace(/\n/g, '<br/>') }} />
+             Hello.
           </motion.h2>
           
           <div className="space-y-4">
             <p className="text-navy/60 text-base md:text-lg leading-relaxed">
-              {introText}
+              At J & M Painting, we are artisans of refined living. Specializing in high-end painting, kitchen restoration, and luxury remodeling across the Triangle. We bring precision and creativity to elevate your space.
             </p>
             <div className="flex items-center gap-4">
               <div className="h-[1px] w-12 bg-brand-blue" />
