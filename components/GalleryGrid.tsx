@@ -20,10 +20,10 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
       {items.map((item, index) => (
         <motion.div
           key={item.id}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: index * 0.05 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: index * 0.05 }}
           className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer"
         >
           <div className="relative aspect-[3/4] md:aspect-auto">
