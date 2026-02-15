@@ -25,6 +25,7 @@ export default async function Home() {
         subtitle={homepage.heroSubtitle}
         buttonText={homepage.heroButtonText}
         backgroundImage={homepage.heroImageUrl}
+        backgroundImageAlt={homepage.heroImageAlt}
       />
       <GalleryPreview items={previewItems} />
       <PortfolioMasonry items={portfolioItems} />

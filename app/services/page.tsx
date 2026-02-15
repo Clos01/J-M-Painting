@@ -1,34 +1,7 @@
-"use client";
-
-import Navbar from "@/components/Navbar";
 import { client } from "@/lib/sanity";
-import Image from "next/image";
-import { ArrowUpRight, Palette, Zap, Shield, Paintbrush, Home, Building2, Hammer } from "lucide-react";
-import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import ServicesClient from "@/components/ServicesClient";
 
 export const revalidate = 60;
-
-// Icon mapping 
-const iconMap: Record<string, any> = {
-  Paintbrush,
-  Home,
-  Building2,
-  Hammer,
-  Palette,
-  Zap,
-  Shield
-};
-
-interface ServiceItem {
-    title: string;
-    subtitle: string;
-    description: string;
-    imageUrl: string;
-    icon: string;
-    features: { text: string }[];
-}
 
 export default async function ServicesPage() {
   const query = `*[_type == "service"] | order(_createdAt asc) {
@@ -74,41 +47,5 @@ export default async function ServicesPage() {
     ];
   }
 
-  return (
-    <main className="min-h-screen bg-alabaster">
-      <Navbar />
-      
-      {/* Intro Header */}
-      <section className="pt-48 pb-24 px-6 md:px-12 text-center bg-alabaster z-10 relative">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
-        >
-          <span className="text-brand-blue font-sans text-xs uppercase tracking-[0.4em] font-bold block mb-6">
-            Our Expertise
-          </span>
-          <h1 className="text-5xl md:text-7xl font-serif text-charcoal tracking-tight leading-none mb-8">
-            Services
-          </h1>
-          <div className="w-12 h-1 bg-brand-blue mx-auto mb-8" />
-          <p className="max-w-xl mx-auto text-navy/60 text-lg leading-relaxed font-medium">
-             Comprehensive stewardship of your home's aesthetic.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* Immersive Sticky Scroll */}
-      <section className="relative pb-32">
-        {services.map((service: ServiceItem, index: number) => (
-            <ServiceSection key={index} service={service} index={index} total={services.length} />
-        ))}
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 text-center text-charcoal/40 text-xs uppercase tracking-[0.2em] border-t border-navy/5 relative z-20 bg-alabaster">
-        © 2026 J&M Painting. All Rights Reserved.
-      </footer>
-    </main>
-  );
+  return <ServicesClient services={services} />;
 }

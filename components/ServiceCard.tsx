@@ -25,6 +25,7 @@ export interface ServiceItemData {
   subtitle: string;
   description: string;
   imageUrl: string;
+  alt?: string;
   features: FeatureItem[];
   accent: string;
 }
@@ -46,7 +47,7 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
       <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-[20px] md:rounded-[40px] shadow-xl mb-8">
         <Image
           src={service.imageUrl}
-          alt={service.title}
+          alt={service.alt || service.title}
           fill
           className="object-cover transition-transform duration-1000 group-hover:scale-110"
         />

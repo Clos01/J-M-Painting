@@ -11,16 +11,19 @@ const previewItems = [
     id: 1,
     title: "Kitchen Cabinets",
     src: "https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&q=80&w=800",
+    alt: "Luxurious kitchen cabinets showcase"
   },
   {
     id: 2,
     title: "Interior & Exterior Painting",
     src: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800",
+    alt: "Expert interior and exterior painting work"
   },
   {
     id: 3,
     title: "Home Remodeling",
     src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800",
+    alt: "High-end home remodeling project"
   },
 ];
 
@@ -28,6 +31,7 @@ interface GalleryItem {
   id: string | number;
   title: string;
   src: string;
+  alt?: string;
 }
 
 interface GalleryPreviewProps {
@@ -79,7 +83,7 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
                 <Link href="/gallery" key={item.id} className="group relative aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer block">
                     <Image
                         src={item.src}
-                        alt={item.title}
+                        alt={item.alt || item.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />

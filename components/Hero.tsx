@@ -8,12 +8,14 @@ export default function Hero({
   title = "Timeless Interiors, Elevated.", 
   subtitle = "The Artisan Standard — Since 1998",
   buttonText = "Check Availability",
-  backgroundImage
+  backgroundImage,
+  backgroundImageAlt = "Luxury interior composition"
 }: { 
   title?: string;
   subtitle?: string;
   buttonText?: string;
   backgroundImage?: string;
+  backgroundImageAlt?: string;
 }) {
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
@@ -104,7 +106,7 @@ export default function Hero({
           >
             <Image
               src={bgImage}
-              alt="Luxury interior composition"
+              alt={backgroundImageAlt}
               fill
               className="object-cover"
               priority

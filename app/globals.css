@@ -24,6 +24,12 @@ body {
   overflow-x: hidden;
 }
 
+@media (pointer: fine) {
+  body, a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
+
 h1, h2, h3, h4, .font-serif {
   font-family: var(--font-playfair), serif;
 }
