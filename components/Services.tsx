@@ -5,8 +5,8 @@ import { useRef } from "react";
 import ServiceCard, { ServiceItemData } from "./ServiceCard";
 
 export default function Services({
-  heading = "Distinctive Curation.",
-  introText = "At J & M Painting, we are more than just contractors – we’re artisans of refined living.",
+  heading = "Hello.",
+  introText = "At J & M Painting, we are artisans of refined living. Specializing in high-end painting, kitchen restoration, and luxury remodeling across the Triangle. We bring precision and creativity to elevate your space.",
   services = []
 }: {
   heading?: string;

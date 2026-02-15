@@ -20,20 +20,8 @@ export default function PaintLoadingScreen() {
       aria-busy="true"
       aria-label="Loading J&M Painting Experience"
     >
-      {/* Texture Filter */}
-      <svg className="hidden">
-        <filter id="paint-texture">
-          <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.05" />
-          </feComponentTransfer>
-          <feComposite operator="in" in2="SourceGraphic" />
-        </filter>
-      </svg>
-
-      {/* Dynamic Brush Strokes */}
-      <div className="absolute inset-0 flex flex-col" style={{ filter: "url(#paint-texture)" }}>
+      {/* Dynamic Brush Strokes - Simplified for Performance */}
+      <div className="absolute inset-0 flex flex-col">
         {strokes.map((stroke, i) => (
           <motion.div
             key={i}
@@ -42,9 +30,9 @@ export default function PaintLoadingScreen() {
             animate={{ x: "0%" }}
             exit={{ x: "100%" }}
             transition={{
-              duration: 1,
+              duration: 0.8,
               delay: stroke.delay,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.22, 1, 0.36, 1], // Custom bezier for snappy feel
             }}
           />
         ))}
