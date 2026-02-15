@@ -16,7 +16,7 @@ interface GalleryGridProps {
 
 export default function GalleryGrid({ items }: GalleryGridProps) {
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-3 md:space-y-6">
+    <div className="flex flex-col gap-3 md:block md:columns-2 lg:columns-3 md:gap-6 md:space-y-6">
       {items.map((item, index) => (
         <motion.div
           key={item.id}
