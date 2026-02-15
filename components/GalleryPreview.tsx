@@ -59,17 +59,17 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
       <motion.div style={{ y, opacity }} className="max-w-[1800px] mx-auto">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-navy/10 pb-8">
-            <div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-16 border-b border-navy/10 pb-8 gap-6 md:gap-0">
+            <div className="w-full md:w-auto">
                 <span className="text-brand-blue font-sans text-xs uppercase tracking-[0.4em] font-bold block mb-4">
-                  Our Expertise
+                  Curated Portfolio
                 </span>
-                <h2 className="text-4xl md:text-6xl font-serif text-charcoal tracking-tight">
+                <h2 className="text-4xl md:text-6xl font-serif text-charcoal tracking-tight leading-none">
                   The <br />
                   <span className="italic text-brand-blue">Collection.</span>
                 </h2>
             </div>
-            <Link href="/gallery" className="group flex items-center gap-2 mt-6 md:mt-0">
+            <Link href="/gallery" className="group flex items-center gap-2">
                 <span className="text-charcoal text-xs uppercase tracking-[0.2em] group-hover:text-brand-blue transition-colors">
                     View Full Collection
                 </span>
