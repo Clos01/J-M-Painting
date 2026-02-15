@@ -64,8 +64,8 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
       className="relative bg-alabaster"
     >
       {/* Intro / Header Section - Scrolls away naturally */}
-      <div className="h-[50vh] flex items-center justify-center bg-alabaster relative z-10">
-        <div className="text-center">
+      <div className="h-[50vh] flex items-center justify-center bg-alabaster relative z-10 px-6">
+        <div className="text-left md:text-center w-full md:w-auto">
            <motion.h2 
              style={{
                opacity: useTransform(scrollYProgress, [0, 0.15], [1, 0]),
@@ -73,8 +73,8 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
              }}
              className="text-6xl md:text-[8vw] font-serif text-charcoal leading-[0.8] tracking-tighter"
            >
-              Selected <br />
-              <span className="italic text-brand-blue">Projects.</span>
+              The <br />
+              <span className="italic text-brand-blue">Collection.</span>
            </motion.h2>
            <motion.p
              style={{
@@ -82,7 +82,7 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
              }}
              className="mt-6 text-charcoal/50 text-xs md:text-sm uppercase tracking-[0.3em] font-medium"
            >
-              A curation of fine residences & finishes
+              Selected works & fine finishes
            </motion.p>
         </div>
       </div>

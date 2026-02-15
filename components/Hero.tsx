@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function Hero({ 
-  title = "Timeless Interiors, Elevated.", 
+  title = "The Art of Living.", 
   subtitle = "The Artisan Standard — Since 1998",
   buttonText = "Check Availability",
   backgroundImage,

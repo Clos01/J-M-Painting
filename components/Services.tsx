@@ -39,7 +39,7 @@ export default function Services({
              whileInView={{ opacity: 1, x: 0 }}
              className="text-brand-blue font-sans text-[10px] uppercase tracking-[0.5em] font-black block mb-4"
           >
-            Capabilities
+            Our Expertise
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 40 }}
@@ -64,7 +64,7 @@ export default function Services({
 
         {/* Right Side: Scrollable Feature Cards */}
         <div ref={scrollRef} className="lg:w-[60%] p-6 md:p-16 space-y-16 md:space-y-32">
-          {displayServices.map((service, index) => (
+          {displayServices.map((service) => (
             <ServiceCard 
               key={service.title} 
               service={service} 
