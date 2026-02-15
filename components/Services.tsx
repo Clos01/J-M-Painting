@@ -62,6 +62,13 @@ export default function Services({
           </div>
         </div>
 
+        {/* Mobile Sticky Section Header */}
+        <div className="lg:hidden sticky top-24 left-0 w-full h-16 z-30 px-6 flex items-center bg-alabaster/80 backdrop-blur-md border-b border-navy/5">
+           <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-blue">
+              Our Expertise
+           </span>
+        </div>
+
         {/* Right Side: Scrollable Feature Cards */}
         <div ref={scrollRef} className="lg:w-[60%] p-6 md:p-16 space-y-16 md:space-y-32">
           {displayServices.map((service) => (

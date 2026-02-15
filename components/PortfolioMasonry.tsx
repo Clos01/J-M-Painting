@@ -87,6 +87,27 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
         </div>
       </div>
 
+      {/* Mobile Sticky Header Background Overlay (Blur) */}
+      <div className="md:hidden sticky top-24 left-0 w-full h-16 z-40 px-6 flex items-center pointer-events-none">
+        <motion.div 
+           style={{ 
+             opacity: useTransform(scrollYProgress, [0.08, 0.12], [0, 1]),
+           }}
+           className="absolute inset-0 bg-alabaster/80 backdrop-blur-md border-b border-navy/5"
+        />
+        <motion.div
+           style={{ 
+             opacity: useTransform(scrollYProgress, [0.08, 0.12], [0, 1]),
+             y: useTransform(scrollYProgress, [0.08, 0.12], [10, 0])
+           }}
+           className="relative"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-blue">
+            The Collection
+          </span>
+        </motion.div>
+      </div>
+
       {/* Full Screen Sticky Items */}
       <div className="relative">
         {displayItems.map((item, index) => (
