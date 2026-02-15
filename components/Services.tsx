@@ -68,7 +68,6 @@ export default function Services({
             <ServiceCard 
               key={service.title} 
               service={service} 
-              index={index} 
             />
           ))}
         </div>
