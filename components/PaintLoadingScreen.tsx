@@ -68,19 +68,24 @@ export default function PaintLoadingScreen() {
           />
         </div>
         <div className="flex flex-col items-center">
-          <motion.span 
-            className="text-2xl md:text-4xl font-serif font-black text-navy tracking-tighter leading-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            J&M PAINTING
-          </motion.span>
+          <div className="overflow-hidden">
+            <motion.h1 
+              className="text-2xl md:text-3xl font-serif font-bold text-navy tracking-widest uppercase flex gap-2"
+              initial={{ y: "100%" }}
+              animate={{ y: "0%" }}
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="font-light">J&M</span> 
+              <span>Painting</span>
+              <span className="text-gold">&</span>
+              <span>Remodeling</span>
+            </motion.h1>
+          </div>
           <motion.div 
-            className="h-[1px] w-12 bg-gold mt-2"
+            className="h-[1px] bg-navy/20 mt-4"
             initial={{ width: 0 }}
-            animate={{ width: 48 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            animate={{ width: 120 }}
+            transition={{ delay: 1.0, duration: 1.2, ease: "easeInOut" }}
           />
         </div>
       </motion.div>
