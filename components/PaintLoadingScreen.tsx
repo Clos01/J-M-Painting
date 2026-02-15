@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const strokes = [
   { color: "bg-brand-blue", delay: 0 },
-  { color: "bg-navy", delay: 0.1 },
-  { color: "bg-alabaster", delay: 0.2 },
+  { color: "bg-alabaster", delay: 0.1 },
+  { color: "bg-navy", delay: 0.2 },
 ];
 
 export default function PaintLoadingScreen() {

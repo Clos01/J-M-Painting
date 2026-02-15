@@ -71,7 +71,7 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
             </div>
             <Link href="/gallery" className="group flex items-center gap-2">
                 <span className="text-charcoal text-xs uppercase tracking-[0.2em] group-hover:text-brand-blue transition-colors">
-                    View Full Collection
+                    Explore Experience
                 </span>
                 <ArrowRight className="w-4 h-4 text-brand-blue transform group-hover:translate-x-1 transition-transform" />
             </Link>
