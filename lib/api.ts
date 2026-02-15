@@ -84,6 +84,7 @@ export async function fetchHomepageData(): Promise<HomepageData> {
     const fetchedPhotos = data.photos || [];
 
     // Map Sanity results to component expected format
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mappedPhotos = fetchedPhotos.map((p: any) => ({
       id: p._id,
       title: p.title || "Untitled Project",
@@ -92,6 +93,7 @@ export async function fetchHomepageData(): Promise<HomepageData> {
       alt: p.alt
     }));
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mappedShowcase = (homepage.showcaseProjects || []).map((p: any) => ({
       id: p._id,
       title: p.title || "Untitled Project",

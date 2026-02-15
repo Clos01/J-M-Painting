@@ -97,7 +97,19 @@ export default function PortfolioMasonry({ items }: PortfolioMasonryProps) {
   );
 }
 
-function PortfolioItem({ item, index, total }: { item: any, index: number, total: number }) {
+interface PortfolioItemProps {
+  item: {
+    id: string | number;
+    title: string;
+    category: string;
+    src: string;
+    alt?: string;
+  };
+  index: number;
+  total: number;
+}
+
+function PortfolioItem({ item, index }: PortfolioItemProps) {
   const ref = useRef<HTMLDivElement>(null);
   
   // Track scroll progress of this specific item

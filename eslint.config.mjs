@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "studio-j-m-painting/**",
+    "node_modules/**",
+    ".vercel/**",
   ]),
 ]);
 

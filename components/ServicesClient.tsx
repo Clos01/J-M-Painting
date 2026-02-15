@@ -7,7 +7,8 @@ import { useRef } from "react";
 import Navbar from "@/components/Navbar";
 
 // Icon mapping 
-const iconMap: Record<string, any> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const iconMap: Record<string, React.ComponentType<any>> = {
   Paintbrush,
   Home,
   Building2,
@@ -50,7 +51,7 @@ export default function ServicesClient({ services }: ServicesClientProps) {
           </h1>
           <div className="w-12 h-1 bg-brand-blue mx-auto mb-8" />
           <p className="max-w-xl mx-auto text-navy/60 text-lg leading-relaxed font-medium">
-             Comprehensive stewardship of your home's aesthetic.
+             Comprehensive stewardship of your home&apos;s aesthetic.
           </p>
         </motion.div>
       </section>
@@ -70,7 +71,7 @@ export default function ServicesClient({ services }: ServicesClientProps) {
   );
 }
 
-function ServiceSection({ service, index, total }: { service: ServiceItem, index: number, total: number }) {
+function ServiceSection({ service, index }: { service: ServiceItem, index: number, total: number }) {
     const ref = useRef<HTMLDivElement>(null);
     
     const { scrollYProgress } = useScroll({

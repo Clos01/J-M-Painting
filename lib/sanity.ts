@@ -10,6 +10,7 @@ export const client = createClient({
 
 const builder = createImageUrlBuilder(client);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getSanityImageUrl(source: any) {
   return builder.image(source);
 }

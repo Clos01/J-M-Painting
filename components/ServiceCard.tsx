@@ -5,7 +5,8 @@ import Image from "next/image";
 import { ArrowUpRight, Shield, Palette, Zap, Paintbrush, Home, Building2, Hammer } from "lucide-react";
 
 // Icon mapping
-const ICON_MAP: Record<string, any> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ICON_MAP: Record<string, React.ComponentType<any>> = {
   Paintbrush,
   Home,
   Building2,
@@ -16,7 +17,7 @@ const ICON_MAP: Record<string, any> = {
 };
 
 interface FeatureItem {
-  icon: string | any;
+  icon: string;
   text: string;
 }
 
@@ -35,7 +36,7 @@ interface ServiceCardProps {
   index: number;
 }
 
-export default function ServiceCard({ service, index }: ServiceCardProps) {
+export default function ServiceCard({ service }: Omit<ServiceCardProps, "index">) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -71,7 +72,7 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
 
         <div className="space-y-6 mt-8 md:mt-0 pt-1">
           <div className="grid grid-cols-1 gap-4">
-            {service.features.map((f: any, i: number) => {
+            {service.features.map((f: FeatureItem, i: number) => {
                const Icon = ICON_MAP[f.icon] || Palette;
                return (
               <div key={i} className="flex gap-4 items-center group/item">

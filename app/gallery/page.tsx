@@ -1,10 +1,6 @@
 import Navbar from "@/components/Navbar";
 import GalleryGrid from "@/components/GalleryGrid";
 import { client } from "@/lib/sanity";
-import { motion } from "framer-motion"; // Moving motion to client component part for strictness? 
-// Actually we can leave motion in page/header if we make the header a client comp or just keep page simplified.
-// Let's make page server comp and header client or just standard header.
-// Ideally page.tsx is server comp.
 
 export const revalidate = 60;
 
@@ -18,6 +14,7 @@ export default async function Gallery() {
 
   const fetchedPhotos = await client.fetch(query);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const galleryItems = fetchedPhotos.map((p: any) => ({
     id: p._id,
     src: p.src,
