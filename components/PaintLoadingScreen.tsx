@@ -68,24 +68,85 @@ export default function PaintLoadingScreen() {
           />
         </div>
         <div className="flex flex-col items-center">
-          <div className="overflow-hidden">
-            <motion.h1 
-              className="text-2xl md:text-3xl font-serif font-bold text-navy tracking-widest uppercase flex gap-2"
-              initial={{ y: "100%" }}
-              animate={{ y: "0%" }}
-              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          <div className="overflow-hidden flex flex-col items-center gap-1">
+            {/* J&M */}
+            <motion.div 
+              className="text-2xl md:text-3xl font-serif font-bold text-navy tracking-widest uppercase flex"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.05, delayChildren: 0.6 } }
+              }}
             >
-              <span className="font-light">J&M</span> 
-              <span>Painting</span>
-              <span className="text-gold">&</span>
-              <span>Remodeling</span>
-            </motion.h1>
+              {"J&M".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={{
+                    hidden: { y: "100%" },
+                    visible: { y: "0%", transition: { duration: 0.5, ease: [0.33, 1, 0.68, 1] } }
+                  }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            {/* PAINTING & REMODELING */}
+            <motion.div 
+              className="text-sm md:text-base font-sans font-medium text-navy/70 tracking-[0.3em] uppercase flex gap-3"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.02, delayChildren: 0.9 } }
+              }}
+            >
+              {/* Painting */}
+              <div className="flex">
+                {"PAINTING".split("").map((char, index) => (
+                  <motion.span
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </div>
+              
+              <motion.span 
+                variants={{
+                  hidden: { opacity: 0, scale: 0 },
+                  visible: { opacity: 1, scale: 1 }
+                }}
+                className="text-gold"
+              >
+                &
+              </motion.span>
+
+              {/* Remodeling */}
+              <div className="flex">
+                {"REMODELING".split("").map((char, index) => (
+                  <motion.span
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </div>
           <motion.div 
-            className="h-[1px] bg-navy/20 mt-4"
+            className="h-[1px] bg-navy/10 mt-6"
             initial={{ width: 0 }}
-            animate={{ width: 120 }}
-            transition={{ delay: 1.0, duration: 1.2, ease: "easeInOut" }}
+            animate={{ width: 60 }}
+            transition={{ delay: 1.5, duration: 1.0, ease: "easeInOut" }}
           />
         </div>
       </motion.div>
