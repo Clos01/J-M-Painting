@@ -42,9 +42,21 @@ export default async function ServicesPage() {
         description: "Our signature service. Meticulous preparation, premium paints, and flawless execution for both the sanctuary within and the facade without.",
         imageUrl: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2000&auto=format&fit=crop", // Exterior
         icon: "Paintbrush",
-        features: [{text: "Dustless sanding"}, {text: "Spray & Roll"}, {text: "2-Year Warranty"}]
+        features: [{text: "Sanding"}, {text: "Spray & Roll"}, {text: "Wall Patching"}]
       }
     ];
+  } else {
+    // Transform Sanity data to ensure legacy copy is removed
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    services = services.map((s: any) => ({
+      ...s,
+      features: (s.features || []).map((f: any) => {
+        let text = f.text;
+        if (text.toLowerCase().includes("2 year warranty") || text.toLowerCase().includes("2-year warranty")) text = "Wall Patching";
+        if (text.toLowerCase().includes("dustless sanding") || text.toLowerCase().includes("dust-free process")) text = "Sanding";
+        return { ...f, text };
+      })
+    }));
   }
 
   return <ServicesClient services={services} />;
