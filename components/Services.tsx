@@ -22,7 +22,7 @@ export default function Services({
       imageUrl: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&q=80&w=1200",
       features: [
         { icon: "Palette", text: "Color Consultation" },
-        { icon: "Zap", text: "Dust-Free Process" }
+        { icon: "Zap", text: "Sanding" }
       ],
       accent: "bg-brand-blue"
     }
@@ -65,7 +65,7 @@ export default function Services({
         {/* Mobile Sticky Section Header */}
         <div className="lg:hidden sticky top-24 left-0 w-full h-16 z-30 px-6 flex items-center bg-alabaster/80 backdrop-blur-md border-b border-navy/5">
            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-blue">
-              Our Expertise
+              {heading}
            </span>
         </div>
 

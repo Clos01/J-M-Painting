@@ -80,7 +80,16 @@ export async function fetchHomepageData(): Promise<HomepageData> {
     }
 
     const homepage = data.homepage || {};
-    const services = data.services || [];
+    const services = (data.services || []).map((s: any) => ({
+      ...s,
+      features: (s.features || []).map((f: any) => {
+        let text = f.text;
+        if (text.toLowerCase().includes("2 year warranty")) text = "Wall Patching";
+        if (text.toLowerCase().includes("dustless sanding") || text.toLowerCase().includes("dust-free process")) text = "Sanding";
+        return { ...f, text };
+      })
+    }));
+
     const fetchedPhotos = data.photos || [];
 
     // Map Sanity results to component expected format
