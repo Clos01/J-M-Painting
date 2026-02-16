@@ -46,12 +46,7 @@ export default async function Gallery() {
 
       {/* Masonry Grid */}
       <section className="px-4 md:px-12 pb-32 relative">
-        {/* Mobile Sticky Section Header */}
-        <div className="md:hidden sticky top-24 left-0 w-full h-16 z-30 px-6 flex items-center bg-alabaster/80 backdrop-blur-md border-b border-navy/5 -mx-4 w-[calc(100%+2rem)] mb-8">
-           <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-blue">
-              Our Portfolio
-           </span>
-        </div>
+
         <GalleryGrid items={galleryItems} />
       </section>
 
