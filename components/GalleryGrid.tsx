@@ -35,12 +35,10 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-            
-            {/* Mobile Overlay (Always visible or simpler?) - Keeping hover for consistency, maybe touch triggers it */}
-            <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-               <span className="text-white/80 text-xs uppercase tracking-widest font-medium mb-1">{item.category}</span>
-               <h3 className="text-white text-xl font-serif">{item.title}</h3>
+            {/* Mobile Overlay (Visible by default for context) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-6 flex flex-col justify-end">
+               <span className="text-white/80 text-[10px] uppercase tracking-[0.2em] font-bold mb-1">{item.category}</span>
+               <h3 className="text-white text-lg font-serif italic">{item.title}</h3>
             </div>
           </motion.div>
         ))}

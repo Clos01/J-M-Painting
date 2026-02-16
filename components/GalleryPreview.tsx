@@ -87,9 +87,8 @@ export default function GalleryPreview({ items }: GalleryPreviewProps) {
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <h3 className="text-white text-2xl font-serif italic opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
+                        <h3 className="text-white text-xl font-serif italic md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 delay-100">
                             {item.title}
                         </h3>
                     </div>
